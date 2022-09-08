@@ -1,0 +1,25 @@
+From 65bbbb978df1a2c54cb62000721d3078a8f3a3c4 Mon Sep 17 00:00:00 2001
+From: gl-luochongjun <luochongjun@gl-inet.com>
+Date: Thu, 8 Sep 2022 10:11:55 +0800
+Subject: [PATCH] skip armv8 esr_el3 register
+
+---
+ src/target/armv8_dpm.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/target/armv8_dpm.c b/src/target/armv8_dpm.c
+index 017c175fc..7ceda278a 100644
+--- a/src/target/armv8_dpm.c
++++ b/src/target/armv8_dpm.c
+@@ -792,6 +792,8 @@ int armv8_dpm_read_current_registers(struct arm_dpm *dpm)
+ 		/* Special case: ARM_MODE_SYS has no SPSR at EL1 */
+ 		if (r->number == ARMV8_SPSR_EL1 && arm->core_mode == ARM_MODE_SYS)
+ 			continue;
++		if (r->number == ARMV8_ESR_EL3)
++			continue;
+ 
+ 		retval = dpmv8_read_reg(dpm, r, i);
+ 		if (retval != ERROR_OK)
+-- 
+2.25.1
+
