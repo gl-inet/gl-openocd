@@ -1,5 +1,7 @@
 # GL OpenOCD
 
+项目地址
+https://github.com/gl-inet/gl-openocd
 该项目是编译好的openocd linux版本，并且应用了patch目录下的相关补丁
 源代码及编译方法请参考官方仓库
 https://github.com/xpack-dev-tools/openocd
